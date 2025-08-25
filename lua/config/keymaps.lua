@@ -1,44 +1,19 @@
--- ~/.config/nvim/lua/user/keymaps.lua
-
--- Remap for dealing with word wrap
--- vim.keymap.set('n', 'k', 'v:count == 0 ? 'gk' : 'k'', { expr = true, silent = true })
--- vim.keymap.set('n', 'j', 'v:count == 0 ? 'gj' : 'j'', { expr = true, silent = true })
+-- ~/.config/nvim/lua/keymaps.lua
+local ui = require("util.ui")
 
 
--- Buffer commands
-vim.keymap.set('n', '<leader>bn', '<cmd>bnext<cr>',     { desc = 'Next buffer' })
-vim.keymap.set('n', '<leader>bp', '<cmd>bprevious<cr>', { desc = 'Previous buffer' })
-vim.keymap.set('n', '<leader>bb', '<cmd>FzfLua buffers<cr>', { desc = 'Switch buffer (FzfLua)' })
-vim.keymap.set('n', '<leader>bl', '<cmd>b#<cr>',        { desc = 'Switch to last buffer' }) -- `b#` is the "alternate file"
-vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>',   { desc = 'Delete current buffer' })
-vim.keymap.set('n', '<leader>bw', '<cmd>edit<cr>',      { desc = 'Reload current buffer from disk' })
+-- edit config files
+vim.keymap.set('n', '<leader>ck', '<cmd>e ~/.config/kitty/kitty.conf<cr>',   { desc = 'kitty.config' })
+vim.keymap.set('n', '<leader>cz', '<cmd>e ~/.config/zsh/zshrc.sh<cr>',   { desc = '.zshrc' })
+vim.keymap.set('n', '<leader>cv', function()
+  require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
+end, { desc = 'neovim' })
 
-
--- edit files
-vim.keymap.set('n', "<leader>ff", "<cmd>FzfLua files<cr>",   {desc = "Find files" })
-vim.keymap.set('n', "<leader>fb", "<cmd>FzfLua buffers<cr>", {desc = "Buffers" })
-vim.keymap.set('n', "<leader>fg", "<cmd>FzfLua live_grep<cr>", {desc = "Live grep" })
-
--- edit rc files files
-vim.keymap.set('n', '<leader>frz', '<cmd>e ~/.config/zsh/zshrc.sh<cr>',   { desc = 'edit zshrc' })
-vim.keymap.set('n', '<leader>frv', '<cmd>e ~/.config/nvim/init.lua<cr>',   { desc = 'edit zshrc' })
-
+-- Lazy
+vim.keymap.set("n", "<leader>ll", function() require("lazy").home() end, { desc = "Lazy" })
 
 -- quit
 vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>",  { desc = "quite" })
-
--- Toggle line numbers in current buffer
-vim.keymap.set("n", "<leader>tu", function()
-  vim.wo.number = not vim.wo.number
-end, { desc = "Toggle line numbers" })
-
--- Toggle line numbers in *all* windows/buffers
-vim.keymap.set("n", "<leader>tN", function()
-  local newval = not vim.wo.number
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    vim.wo[win].number = newval
-  end
-end, { desc = "Toggle line numbers (all buffers)" })
 
 
 -- Move to window using hjkl>
@@ -67,32 +42,9 @@ vim.keymap.set("n", "<leader>ws", "<cmd>split<cr>",  { desc = "Horizontal split"
 vim.keymap.set("n", "<leader>wq", "<cmd>q<cr>",  { desc = "close window" })
 vim.keymap.set("n", "<leader>wo", "<C-w>o", { desc = "Keep only current window" })
 
--- buffer navigation
--- vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
--- vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" }
-
--- change color scheme
-vim.keymap.set("n", "<leader>uc", function()
-  require("fzf-lua").colorschemes()
-end, { desc = "Change color scheme" })
+-- ui
+vim.keymap.set("n", "<leader>un",  function() ui.toggle_option("number", true) end, { desc = "Toggle line numbers" })
+vim.keymap.set("n", "<leader>uN",  function() ui.toggle_option("relativenumber", true) end,  { desc = "Toggle line numbers (all)" })
 
 -- change background
-vim.keymap.set("n", "<leader>ub", function()
-  if vim.opt.background:get() == "dark" then
-    vim.opt.background = "light"
-  else
-    vim.opt.background = "dark"
-  end
-  vim.cmd("colorscheme " .. vim.g.colors_name)
-end, { desc = "Toggle background (dark/light)" })
-
--- open file
--- Quickfix list
-vim.keymap.set('n', '[q', vim.cmd.cprev, { desc = 'Previous quickfix item' })
-vim.keymap.set('n', ']q', vim.cmd.cnext, { desc = 'Next quickfix item' })
-
--- Diagnostics
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to prev diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = 'Open diagnostic quickfix list' })
+vim.keymap.set("n", "<leader>ub", function() ui.toggle_background() end, { desc = "Toggle background (dark/light)" })

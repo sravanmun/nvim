@@ -1,4 +1,5 @@
 -- ~/.config/nvim/lua/user/autocmds.lua
+--[[
 -- Wrap and check for spell in text filetypes.
 vim.api.nvim_create_autocmd('FileType', {
     group = vim.api.nvim_create_augroup('wrap_spell', { clear = true }),
@@ -20,3 +21,4 @@ vim.api.nvim_create_autocmd('BufReadPost', {
         end
     end,
 })
+--]]

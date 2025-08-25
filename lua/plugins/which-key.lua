@@ -1,4 +1,4 @@
-if true then return {} end
+-- if true then return {} end
 
 return {
     "folke/which-key.nvim",
@@ -11,15 +11,9 @@ return {
         {
           mode = { "n", "v" },
 
-          { "<leader><tab>", group = "tabs" },
           { "<leader>b", group = "buffer" },
           { "<leader>f", group = "file/find" },
-          { "<leader>fr", group = "rc_files" },
-          { "<leader>g", group = "git" },
-          { "<leader>gh", group = "hunks" },
           { "<leader>q", group = "quit/session" },
-          { "<leader>s", group = "search" },
-          { "<leader>t", group = "toggle" },
           { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
           { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
           { "<leader>w", group = "window" }, 
