@@ -32,7 +32,6 @@ local function toggle_indent()
 end
 
 
-
 return {
   {
     "folke/snacks.nvim",

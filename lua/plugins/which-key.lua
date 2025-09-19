@@ -13,10 +13,11 @@ return {
 
           { "<leader>b", group = "buffer" },
           { "<leader>f", group = "file/find" },
+          { "<leader>m", group = "mode" },
           { "<leader>q", group = "quit/session" },
           { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
           { "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
-          { "<leader>w", group = "window" }, 
+          { "<leader>w", group = "window" },
           { "[", group = "prev" },
           { "]", group = "next" },
           { "g", group = "goto" },

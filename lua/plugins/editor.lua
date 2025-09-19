@@ -31,6 +31,23 @@ return {
     },
   },
 
+  -- zen mode
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+
+  -- markdown table
+  {
+    'Kicamon/markdown-table-mode.nvim',
+    config = function()
+      require('markdown-table-mode').setup()
+    end
+  },
 
   {
     "folke/todo-comments.nvim",
@@ -59,7 +76,6 @@ return {
       -- (defaults are fine, but you can keep this)
       search = { pattern = [[\b(KEYWORDS)\b]] },
     },
-  },
   config = function(_, opts)
     local tc = require("todo-comments")
     tc.setup(opts)
@@ -71,4 +87,5 @@ return {
     map("]t", function() tc.jump_next() end, "Next TODO")
     map("[t", function() tc.jump_prev() end, "Prev TODO")
   end,
+  },
 }

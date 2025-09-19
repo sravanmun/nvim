@@ -8,6 +8,7 @@ return {
   { "phha/zenburn.nvim",                             lazy = true },
   { "NTBBloodbath/doom-one.nvim",                    lazy = true },
   { "rmehri01/onenord.nvim",                         lazy = true },
+  { "deparr/tairiki.nvim",                           lazy = true },
 }
 
 

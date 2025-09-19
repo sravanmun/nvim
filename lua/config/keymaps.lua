@@ -1,16 +1,30 @@
 -- ~/.config/nvim/lua/keymaps.lua
 local ui = require("util.ui")
 
+vim.keymap.set("n", "<leader>;", "<cmd>FzfLua commands<CR>", { desc = "Command palette" })
 
 -- edit config files
-vim.keymap.set('n', '<leader>ck', '<cmd>e ~/.config/kitty/kitty.conf<cr>',   { desc = 'kitty.config' })
-vim.keymap.set('n', '<leader>cz', '<cmd>e ~/.config/zsh/zshrc.sh<cr>',   { desc = '.zshrc' })
+vim.keymap.set('n', '<leader>ca', '<cmd>e ~/.config/alacritty/alacritty.toml<cr>',   { desc = 'alacritty' })
+vim.keymap.set('n', '<leader>ck', '<cmd>e ~/.config/kitty/kitty.conf<cr>',   { desc = 'kitty' })
+vim.keymap.set('n', '<leader>cz', '<cmd>e ~/.config/zsh/zshrc.sh<cr>',   { desc = 'zsh' })
+vim.keymap.set('n', '<leader>cb', '<cmd>e ~/.bashrc<cr>',   { desc = 'bash' })
 vim.keymap.set('n', '<leader>cv', function()
   require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
 end, { desc = 'neovim' })
 
+
+-- file
+vim.keymap.set("n", "<leader>fs", '<cmd>w<cr>', { desc = "Save File" })
+vim.keymap.set("n", "<leader>fd", function()
+  require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
+end, { desc = "Find files in current dir" })
+
 -- Lazy
 vim.keymap.set("n", "<leader>ll", function() require("lazy").home() end, { desc = "Lazy" })
+
+-- Mode
+vim.keymap.set("n", "<leader>mz", '<cmd>ZenMode<cr>', { desc = "zen mode" })
+vim.keymap.set("n", "<leader>mtm", '<cmd>Mtm<cr>', { desc = "markdown table" })
 
 -- quit
 vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>",  { desc = "quite" })
