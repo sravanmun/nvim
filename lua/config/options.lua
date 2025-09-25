@@ -1,7 +1,7 @@
 -- ~/.config/nvim/lua/options.lua
 
 -- indentation
-vim.opt.tabstop = 2
+vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.expandtab = true
 

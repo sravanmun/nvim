@@ -93,7 +93,7 @@ return {
       { "<leader>bd",      function() require("snacks").bufdelete() end,         desc = "Find Files" },
       { "<leader>ff",      function() require("snacks").picker.files() end,      desc = "Find Files" },
       { "<leader>fg",      function() require("snacks").picker.grep() end,       desc = "Grep" },
-      { "<leader>fb",      function() require("snacks").picker.buffers() end,    desc = "Buffers" },
+      { "<leader>bb",      function() require("snacks").picker.buffers() end,    desc = "Buffers" },
       { "<leader>fr",      function() require("snacks").picker.recent() end,     desc = "Recent Files" },
       { "<leader>:",       function() require("snacks").picker.command_history() end, desc = "Command History" },
       { "<leader>n",       function() require("snacks").picker.notifications() end,   desc = "Notification History" },
