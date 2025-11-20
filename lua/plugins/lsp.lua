@@ -8,7 +8,6 @@ return {
       "williamboman/mason-lspconfig.nvim",
     },
      config = function()
-      local lspconfig = require("lspconfig")
 
       vim.diagnostic.config({
         virtual_text = { spacing = 2, prefix = "●" }, severity_sort = true,
@@ -25,13 +24,16 @@ return {
       end
 
       -- lua (neovim language)
-      lspconfig.lua_ls.setup {on_attach = on_attach}
+      vim.lsp.config('lua_ls', { on_attach = on_attach })
+      vim.lsp.enable('lua_ls')
 
-      -- python setup
-      lspconfig.pyright.setup {on_attach = on_attach}
+      -- python
+      vim.lsp.config('pyright', { on_attach = on_attach })
+      vim.lsp.enable('pyright')
 
-      -- C++ setup
-      lspconfig.clangd.setup {on_attach = on_attach}
+      -- C/C++
+      vim.lsp.config('clangd', { on_attach = on_attach })
+      vim.lsp.enable('clangd')
     end
   },
 

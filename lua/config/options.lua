@@ -10,10 +10,10 @@ vim.opt.clipboard = "unnamedplus"   -- use the + register (system)
 -- color scheme
 vim.opt.termguicolors = true
 vim.o.background = "dark" -- or "light" for light mode
--- local default_colorscheme = "gruvbox"
+local default_colorscheme = "gruvbox"
 -- local default_colorscheme = "zenburn"
 -- local default_colorscheme = "retrobox"
-local default_colorscheme = "everforest"
+-- local default_colorscheme = "everforest"
 
 -- load color scheme safely
 local ok, _ = pcall(vim.cmd.colorscheme, default_colorscheme)
