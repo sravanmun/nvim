@@ -17,7 +17,9 @@ return {
       -- Popups (like Magit)
       { "<leader>gc", function() require("neogit").open({ "commit" }) end,
         desc = "Commit Popup" },
-      { "<leader>gp", function() require("neogit").open({ "push" }) end,
+      { "<leader>gp", function() require("neogit").open({ "pull" }) end,
+        desc = "Pull Popup" },
+      { "<leader>gP", function() require("neogit").open({ "push" }) end,
         desc = "Push Popup" },
       { "<leader>gf", function() require("neogit").open({ "pull" }) end,
         desc = "Pull Popup" },
