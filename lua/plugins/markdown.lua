@@ -8,6 +8,12 @@ return {
     opts = {},
 },
 
+-- asciidoc ASCIIDOC
+  {
+    "habamax/vim-asciidoctor",
+    ft = { "asciidoc", "adoc" },
+  },
+
   -- org
   {
     'nvim-orgmode/orgmode',
