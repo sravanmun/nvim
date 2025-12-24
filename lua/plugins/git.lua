@@ -1,40 +1,27 @@
 return {
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"ibhagwan/fzf-lua",
+			"echasnovski/mini.pick",
+			"folke/snacks.nvim",
+		},
+		cmd = "Neogit",
 
-      -- Only one of these is needed.
-      "ibhagwan/fzf-lua",              -- optional
-      "echasnovski/mini.pick",         -- optional
-      "folke/snacks.nvim",             -- optional
-    },
-    cmd = "Neogit",
-    keys = {
-      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Neogit Status" },
+        keys = {
+          { "<leader>g", group = "git" },
 
-      -- Popups (like Magit)
-      { "<leader>gc", function() require("neogit").open({ "commit" }) end,
-        desc = "Commit Popup" },
-      { "<leader>gp", function() require("neogit").open({ "pull" }) end,
-        desc = "Pull Popup" },
-      { "<leader>gP", function() require("neogit").open({ "push" }) end,
-        desc = "Push Popup" },
-      { "<leader>gf", function() require("neogit").open({ "pull" }) end,
-        desc = "Pull Popup" },
+          { "<leader>gg", "<cmd>Neogit<cr>",         desc = "Neogit Status" },
+          { "<leader>gc", "<cmd>Neogit commit<cr>",  desc = "Commit Popup" },
+          { "<leader>gp", "<cmd>Neogit pull<cr>",    desc = "Pull Popup" },
+          { "<leader>gP", "<cmd>Neogit push<cr>",    desc = "Push Popup" },
+          { "<leader>gl", "<cmd>Neogit log<cr>",     desc = "Log (cwd)" },
+          { "<leader>gb", "<cmd>Neogit branch<cr>",  desc = "Branch manager" },
 
-      -- Logs
-      { "<leader>gl", function() require("neogit").open({ "log" }) end,
-        desc = "Log (cwd)" },
+          { "<leader>gd", "<cmd>DiffviewOpen<cr>",   desc = "Diff (Diffview)" },
+          { "<leader>gD", "<cmd>DiffviewClose<cr>",  desc = "Close Diffview" },
 
-      -- Diff / DiffView integration
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diff (Diffview)" },
-      { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "Close Diffview" },
-
-      -- Fast commands
-      { "<leader>gs", "<cmd>Neogit kind=split<cr>", desc = "Status (split)" },
-      { "<leader>gb", "<cmd>Neogit branch<cr>", desc = "Branch manager" },
-    }
-  },
+          { "<leader>gs", "<cmd>Neogit kind=split<cr>", desc = "Status (split)" },
+        },
 }

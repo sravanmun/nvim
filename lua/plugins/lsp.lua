@@ -1,84 +1,67 @@
 return {
-  -- core LSP setup
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      "folke/lazydev.nvim",
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      {
+        "mason-org/mason.nvim",
+        opts = {
+          ui = {
+            border = "rounded",
+            icons = {
+              package_installed = "✓",
+              package_pending = "➜",
+              package_uninstalled = "✗",
+            },
+          },
+        },
+      },
+      {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+          ensure_installed = { "pyright", "clangd", "lua_ls" },
+          automatic_enable = { exclude = { "stylua" } },
+        },
+      },
+      {
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
+        },
+      },
     },
-     config = function()
 
+    config = function()
+      -- Global diagnostics UI
       vim.diagnostic.config({
-        virtual_text = { spacing = 2, prefix = "●" }, severity_sort = true,
+        virtual_text = { spacing = 2, prefix = "●" },
+        severity_sort = true,
         float = { border = "rounded" },
       })
 
+      -- Keymaps: attach once, apply to any LSP buffer
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local bufnr = args.buf
+          local map = function(mode, lhs, rhs, desc)
+            vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+          end
 
-      local on_attach = function(_, bufnr)
-        local map = function(mode, lhs, rhs, desc)
-          vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
-        end
-        -- Hover documentation (NORMAL)
-        map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
-      end
+          map("n", "K", vim.lsp.buf.hover, "Hover Documentation")
+          -- add more LSP maps here if you want
+        end,
+      })
 
-      -- lua (neovim language)
-      vim.lsp.config('lua_ls', { on_attach = on_attach })
-      vim.lsp.enable('lua_ls')
+      -- Server-specific configuration (Neovim 0.11+ style)
+      vim.lsp.config("lua_ls", {
+        -- put lua_ls settings here if/when you need them
+      })
 
-      -- python
-      vim.lsp.config('pyright', { on_attach = on_attach })
-      vim.lsp.enable('pyright')
-
-      -- C/C++
-      vim.lsp.config('clangd', { on_attach = on_attach })
-      vim.lsp.enable('clangd')
-    end
+      vim.lsp.config("pyright", {})
+      vim.lsp.config("clangd", {})
+      -- no vim.lsp.enable() calls needed: mason-lspconfig handles it
+    end,
   },
-
-
-  -- Install LSP servers, formatters, and linters
-  {
-    "mason-org/mason.nvim",
-    opts = {
-      ui = {
-        border = "rounded",
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗"
-        }
-      }
-    }
-  },
-
-  -- Tell LSP which server to use
-  {
-    "mason-org/mason-lspconfig.nvim",
-    dependencies = {
-        "mason-org/mason.nvim",
-        "neovim/nvim-lspconfig",
-    },
-    opts = {
-      ensure_installed = {
-        "pyright",   -- Python LSP
-        "clangd",    -- C/C++ LSP
-        "lua_ls",    -- Lua LSP (for Neovim config)
-      },
-      automatic_installation = true,
-    },
-  },
-
-  -- make lsp work nice with neovim config
-  {
-     "folke/lazydev.nvim",
-    ft = "lua", -- only load on lua files
-    opts = {
-      library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
-  },
-
 }
