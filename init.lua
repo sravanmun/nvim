@@ -28,3 +28,6 @@ require("lazy").setup({
 -- configuration
 require("config.options")
 require("config.keymaps")
+require("config.colorscheme")
+
+

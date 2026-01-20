@@ -7,17 +7,6 @@ vim.opt.expandtab = true
 
 vim.opt.clipboard = "unnamedplus" -- use the + register (system)
 
--- color scheme
-vim.opt.termguicolors = true
-vim.o.background = "dark"
-local default_colorscheme = "everforest"
-
--- load color scheme safely
-local ok, _ = pcall(vim.cmd.colorscheme, default_colorscheme)
-if not ok then
-	vim.notify("Colorscheme " .. default_colorscheme .. " not found!")
-end
-
 -- change split direction
 vim.opt.splitright = true
 vim.opt.splitbelow = true
