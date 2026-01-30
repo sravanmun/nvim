@@ -4,8 +4,6 @@ return {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
 			"ibhagwan/fzf-lua",
-			"echasnovski/mini.pick",
-			"folke/snacks.nvim",
 		},
 		cmd = "Neogit",
 

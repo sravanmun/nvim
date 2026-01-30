@@ -1,7 +1,7 @@
 return {
 	"RaafatTurki/hex.nvim",
 	opts = {},
-	config = function(_, opts)
-		require("hex").setup(opts)
-	end,
+    keys = {
+        { "<leader>th", "<cmd>HexToggle<cr>", desc = "Toggle hex view" },
+    }
 }

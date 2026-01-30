@@ -1,9 +1,15 @@
 -- ~/.config/nvim/lua/options.lua
-
 -- indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.expandtab = true
+
+-- columns
+-- Add to your init.lua or options.lua
+-- vim.opt.number = false
+-- vim.opt.relativenumber = false
+-- vim.opt.foldcolumn = "1"    -- Optional: show fold column
+-- vim.opt.statuscolumn = [[%s%=%{v:relnum?v:relnum:v:lnum} ]]
 
 vim.opt.clipboard = "unnamedplus" -- use the + register (system)
 
@@ -23,7 +29,7 @@ vim.opt.foldenable = true
 vim.o.updatetime = 500 -- 0.5s idle
 
 -- Always show sign column (helps confirm diagnostics exist)
-vim.o.signcolumn = "yes"
+vim.o.signcolumn = "no"
 
 -- file highlighting
 vim.filetype.add({

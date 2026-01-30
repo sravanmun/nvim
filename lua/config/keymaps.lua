@@ -9,25 +9,12 @@ vim.keymap.set("n", "<leader>cb", "<cmd>e ~/.bashrc<cr>", { desc = "bash" })
 vim.keymap.set("n", "<leader>cg", "<cmd>e ~/Library/Application Support/com.mitchellh.ghostty/config<cr>", { desc = "ghostty" })
 vim.keymap.set("n", "<leader>ck", "<cmd>e ~/.config/kitty/kitty.conf<cr>", { desc = "kitty" })
 vim.keymap.set("n", "<leader>cz", "<cmd>e ~/.zshrc<cr>", { desc = "zsh" })
-vim.keymap.set("n", "<leader>cv", function()
-	require("snacks").picker.files({ cwd = vim.fn.stdpath("config") })
-end, { desc = "neovim" })
 
 -- file
 vim.keymap.set("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save File" })
-vim.keymap.set("n", "<leader>fd", function()
-	require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
-end, { desc = "Find files in current dir" })
 
 -- Mode
-vim.keymap.set("n", "<leader>mz", "<cmd>ZenMode<cr>", { desc = "zen mode" })
 vim.keymap.set("n", "<leader>mtm", "<cmd>Mtm<cr>", { desc = "markdown table" })
-
-
--- Term
-vim.keymap.set("n", "<leader>tt", "<cmd>FloatermToggle<cr>", { desc = "Open Floating Terminals" })
-vim.keymap.set("n", "<C-t>", "<cmd>FloatermToggle<cr>", { desc = "Toggle floating terminal" })
-vim.keymap.set("t", "<C-t>", [[<C-\><C-n><cmd>FloatermToggle<cr>]], { desc = "Toggle floating terminal" })
 
 -- quit
 vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>", { desc = "quite" })
@@ -59,16 +46,16 @@ vim.keymap.set("n", "<leader>wq", "<cmd>q<cr>", { desc = "close window" })
 vim.keymap.set("n", "<leader>wo", "<C-w>o", { desc = "Keep only current window" })
 
 -- ui
-vim.keymap.set("n", "<leader>un", function()
+vim.keymap.set("n", "<leader>tn", function()
 	ui.toggle_option("number", true)
 end, { desc = "Toggle line numbers" })
-vim.keymap.set("n", "<leader>uN", function()
+vim.keymap.set("n", "<leader>tN", function()
 	ui.toggle_option("relativenumber", true)
-end, { desc = "Toggle line numbers (all)" })
-
+end, { desc = "Toggle relative line numbers" })
+vim.keymap.set("n", "<leader>ts", ui.toggle_signcolumn, { desc = "Toggle Sign Column" })
 
 -- change background
-vim.keymap.set("n", "<leader>ub", function()
+vim.keymap.set("n", "<leader>tb", function()
 	ui.toggle_background()
 end, { desc = "Toggle background (dark/light)" })
 

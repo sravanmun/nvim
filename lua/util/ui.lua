@@ -13,6 +13,16 @@ function M.toggle_option(opt, all)
 	end
 end
 
+function M.toggle_signcolumn()
+    if vim.opt.signcolumn:get() == "yes" then
+        vim.opt.signcolumn = "no"
+        vim.notify("Sign column hidden", vim.log.levels.INFO)
+    else
+        vim.opt.signcolumn = "yes"
+        vim.notify("Sign column shown", vim.log.levels.INFO)
+    end
+end
+
 function M.toggle_background()
   if vim.o.background == "dark" then
     vim.o.background = "light"
