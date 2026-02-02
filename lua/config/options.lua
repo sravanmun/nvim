@@ -38,3 +38,4 @@ vim.filetype.add({
 		bcf = "toml",
 	},
 })
+

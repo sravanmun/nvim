@@ -4,6 +4,27 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+
+-- Change terminal background to match Neovim colorscheme
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    local bg = vim.fn.synIDattr(vim.fn.hlID("Normal"), "bg")
+    if bg and bg ~= "" then
+      io.write(string.format("\027]11;%s\007", bg))
+      io.flush()
+    end
+  end,
+})
+
+-- Restore terminal background on exit
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    io.write("\027]111\007")
+    io.flush()
+  end,
+})
+
 -- bootstrap lazy.vim extention manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 local uv = vim.uv or vim.loop

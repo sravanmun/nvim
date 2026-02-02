@@ -6,7 +6,7 @@ vim.keymap.set("n", "<leader>;", "<cmd>FzfLua commands<CR>", { desc = "Command p
 -- edit config files
 vim.keymap.set("n", "<leader>ca", "<cmd>e ~/.config/alacritty/alacritty.toml<cr>", { desc = "alacritty" })
 vim.keymap.set("n", "<leader>cb", "<cmd>e ~/.bashrc<cr>", { desc = "bash" })
-vim.keymap.set("n", "<leader>cg", "<cmd>e ~/Library/Application Support/com.mitchellh.ghostty/config<cr>", { desc = "ghostty" })
+vim.keymap.set("n", "<leader>cg", "<cmd>e ~/.config/ghostty/config<cr>", { desc = "ghostty" })
 vim.keymap.set("n", "<leader>ck", "<cmd>e ~/.config/kitty/kitty.conf<cr>", { desc = "kitty" })
 vim.keymap.set("n", "<leader>cz", "<cmd>e ~/.zshrc<cr>", { desc = "zsh" })
 

@@ -73,7 +73,8 @@ local background
 -- Check if macOS and use system theme, otherwise use saved/default
 local macos_theme = get_macos_theme()
 if macos_theme then
-	background = macos_theme
+	-- background = macos_theme
+	background = load_saved_background() or default_background
 else
 	background = load_saved_background() or default_background
 end
@@ -110,6 +111,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
 	end,
 })
 
+--[[
 -- Optional: Periodically check macOS system theme (every 5 minutes)
 if vim.fn.has("mac") == 1 then
 	vim.fn.timer_start(300000, function()
@@ -119,3 +121,4 @@ if vim.fn.has("mac") == 1 then
 		end
 	end, { ["repeat"] = -1 })
 end
+]]
