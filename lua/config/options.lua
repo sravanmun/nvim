@@ -6,8 +6,8 @@ vim.opt.expandtab = true
 
 -- columns
 -- Add to your init.lua or options.lua
--- vim.opt.number = false
--- vim.opt.relativenumber = false
+vim.opt.number = true
+-- vim.opt.relativenumber = true
 -- vim.opt.foldcolumn = "1"    -- Optional: show fold column
 -- vim.opt.statuscolumn = [[%s%=%{v:relnum?v:relnum:v:lnum} ]]
 
@@ -39,3 +39,7 @@ vim.filetype.add({
 	},
 })
 
+if vim.fn.getenv("TERM_PROGRAM") == "ghostty" then
+  vim.opt.title = true
+  vim.opt.titlestring = "%{fnamemodify(getcwd(), ':t')}"
+end

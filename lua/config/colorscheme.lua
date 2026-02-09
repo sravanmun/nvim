@@ -73,8 +73,8 @@ local background
 -- Check if macOS and use system theme, otherwise use saved/default
 local macos_theme = get_macos_theme()
 if macos_theme then
-	-- background = macos_theme
-	background = load_saved_background() or default_background
+	background = macos_theme
+	-- background = load_saved_background() or default_background
 else
 	background = load_saved_background() or default_background
 end
