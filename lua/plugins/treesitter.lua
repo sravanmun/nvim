@@ -31,8 +31,12 @@ return {
 				"gitcommit",
 				"gitignore",
 			},
-			auto_install = true,
-			highlight = { enable = true, additional_vim_regex_highlighting = false },
+			auto_install = false,
+			highlight = {
+                enable = true,
+                disable = { "latex" },
+                additional_vim_regex_highlighting = { "latex" },
+            },
 			indent = { enable = true },
 			incremental_selection = {
 				enable = true,

@@ -39,6 +39,20 @@ vim.filetype.add({
 	},
 })
 
+
+-- copy over ssh
+vim.g.clipboard = {
+  name = "osc52",
+  copy = {
+    ["+"] = require('vim.ui.clipboard.osc52').copy('+'),
+    ["*"] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ["+"] = function() return {""} end,
+    ["*"] = function() return {""} end,
+  },
+}
+
 if vim.fn.getenv("TERM_PROGRAM") == "ghostty" then
   vim.opt.title = true
   vim.opt.titlestring = "%{fnamemodify(getcwd(), ':t')}"
