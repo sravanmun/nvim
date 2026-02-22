@@ -6,11 +6,12 @@ return {
             theme = "auto",
             component_separators = "",
             section_separators = "",
-            globalstatus = true,
+            globalstatus = false,
         },
     },
     config = function(_, opts)
+        vim.opt.laststatus = 2
         require("lualine").setup(opts)
-        vim.opt.laststatus = 3 -- ensure global statusline
+        -- vim.opt.laststatus = 3 -- ensure global statusline
     end,
 }
