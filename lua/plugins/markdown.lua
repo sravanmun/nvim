@@ -47,7 +47,7 @@ return {
         },
         keys = {
             {
-                "<leader>tm",
+                "<leader>um",
                 function()
                     require("render-markdown").toggle()
                 end,

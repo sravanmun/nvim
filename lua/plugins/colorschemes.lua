@@ -6,6 +6,8 @@ return {
 	{ "maxmx03/solarized.nvim",     lazy = true },
 	{ "phha/zenburn.nvim",          lazy = true },
 	{ "NTBBloodbath/doom-one.nvim", lazy = true },
-	{ "rmehri01/onenord.nvim",      lazy = true },
+    { "rebelot/kanagawa.nvim",      lazy = true},
+    { "shaunsingh/nord.nvim",       lazy = true},
 	{ "deparr/tairiki.nvim",        lazy = true },
+	{ "Mofiqul/adwaita.nvim",        lazy = true },
 }

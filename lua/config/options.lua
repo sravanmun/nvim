@@ -7,7 +7,7 @@ vim.opt.expandtab = true
 -- columns
 -- Add to your init.lua or options.lua
 vim.opt.number = true
--- vim.opt.relativenumber = true
+--vim.opt.relativenumber = true
 -- vim.opt.foldcolumn = "1"    -- Optional: show fold column
 -- vim.opt.statuscolumn = [[%s%=%{v:relnum?v:relnum:v:lnum} ]]
 
@@ -40,19 +40,7 @@ vim.filetype.add({
 })
 
 
--- copy over ssh
-vim.g.clipboard = {
-  name = "osc52",
-  copy = {
-    ["+"] = require('vim.ui.clipboard.osc52').copy('+'),
-    ["*"] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ["+"] = function() return {""} end,
-    ["*"] = function() return {""} end,
-  },
-}
-
+-- ghossty terminal support
 if vim.fn.getenv("TERM_PROGRAM") == "ghostty" then
   vim.opt.title = true
   vim.opt.titlestring = "%{fnamemodify(getcwd(), ':t')}"

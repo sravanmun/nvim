@@ -14,6 +14,6 @@ return {
         },
     },
     keys = {
-        { "<leader>ti", "<cmd>IBLToggle<cr>", desc = "Toggle Indent Guides" },
+        { "<leader>ui", "<cmd>IBLToggle<cr>", desc = "Toggle Indent Guides" },
     },
 }

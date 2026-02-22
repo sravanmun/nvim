@@ -1,5 +1,8 @@
 -- bufferline
-return {
+return {}
+
+--[[ 
+    {
     "akinsho/bufferline.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -22,4 +25,4 @@ return {
         vim.opt.showtabline = 1 -- show tabline only when needed
     end,
 }
-
+--]]

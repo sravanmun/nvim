@@ -14,7 +14,7 @@ return {
         { "<leader>bb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
         { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
         { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
-        { "<leader>tc", "<cmd>FzfLua colorschemes<cr>", desc = "Toggle Colorschemes" },
+        { "<leader>uc", "<cmd>FzfLua colorschemes<cr>", desc = "Toggle Colorschemes" },
         {
             "<leader>cv",
             function()

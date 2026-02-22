@@ -3,6 +3,11 @@ local ui = require("util.ui")
 
 vim.keymap.set("n", "<leader>;", "<cmd>FzfLua commands<CR>", { desc = "Command palette" })
 
+-- buffers
+vim.keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", {desc = "next buffer"})
+vim.keymap.set("n", "<leader>bp", "<cmd>bnext<cr>", {desc = "prev buffer"})
+
+
 -- edit config files
 vim.keymap.set("n", "<leader>ca", "<cmd>e ~/.config/alacritty/alacritty.toml<cr>", { desc = "alacritty" })
 vim.keymap.set("n", "<leader>cb", "<cmd>e ~/.bashrc<cr>", { desc = "bash" })
@@ -45,17 +50,35 @@ vim.keymap.set("n", "<leader>ws", "<cmd>split<cr>", { desc = "Horizontal split" 
 vim.keymap.set("n", "<leader>wq", "<cmd>q<cr>", { desc = "close window" })
 vim.keymap.set("n", "<leader>wo", "<C-w>o", { desc = "Keep only current window" })
 
+
+-- tabs
+vim.keymap.set("n", "<leader>tt", "<cmd>tabnew<cr>", { desc = "new tab" })
+vim.keymap.set("n", "<leader>td", "<cmd>tab split<cr>", { desc = "duplicate buffer in new tab" })
+vim.keymap.set("n", "<leader>tn", "<cmd>tabnext<cr>", { desc = "next tab" })
+vim.keymap.set("n", "<leader>tp", "<cmd>tabprevious<cr>", { desc = "prev tab" })
+vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "close current tab" })
+vim.keymap.set("n", "<leader>to", "<cmd>tabonly<cr>", { desc = "close all other tabs" })
+vim.keymap.set("n", "<leader>t>", "<cmd>tabmove +1<cr>", { desc = "move tab right" })
+vim.keymap.set("n", "<leader>t<", "<cmd>tabmove -1<cr>", { desc = "move tab left" })
+vim.keymap.set("n", "<leader>tl", "<cmd>tabprevious<cr>", { desc = "last tab" })
+vim.keymap.set("n", "<leader>t1", "1gt", { desc = "tab 1" })
+vim.keymap.set("n", "<leader>t2", "2gt", { desc = "tab 2" })
+vim.keymap.set("n", "<leader>t3", "3gt", { desc = "tab 3" })
+vim.keymap.set("n", "<leader>t4", "4gt", { desc = "tab 4" })
+vim.keymap.set("n", "<leader>t5", "5gt", { desc = "tab 5" })
+
+
 -- ui
-vim.keymap.set("n", "<leader>tn", function()
+vim.keymap.set("n", "<leader>un", function()
 	ui.toggle_option("number", true)
 end, { desc = "Toggle line numbers" })
-vim.keymap.set("n", "<leader>tN", function()
+vim.keymap.set("n", "<leader>uN", function()
 	ui.toggle_option("relativenumber", true)
 end, { desc = "Toggle relative line numbers" })
-vim.keymap.set("n", "<leader>ts", ui.toggle_signcolumn, { desc = "Toggle Sign Column" })
+vim.keymap.set("n", "<leader>us", ui.toggle_signcolumn, { desc = "Toggle Sign Column" })
 
 -- change background
-vim.keymap.set("n", "<leader>tb", function()
+vim.keymap.set("n", "<leader>ub", function()
 	ui.toggle_background()
 end, { desc = "Toggle background (dark/light)" })
 
