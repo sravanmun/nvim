@@ -6,6 +6,7 @@ vim.keymap.set("n", "<leader>;", "<cmd>FzfLua commands<CR>", { desc = "Command p
 -- buffers
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", {desc = "next buffer"})
 vim.keymap.set("n", "<leader>bp", "<cmd>bnext<cr>", {desc = "prev buffer"})
+-- vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 
 
 -- edit config files

@@ -36,10 +36,27 @@ return {
     config = function()
       -- Global diagnostics UI
       vim.diagnostic.config({
-        virtual_text = { spacing = 2, prefix = "●" },
+        virtual_text = false,
+        virtual_lines = {
+                    current_line = true,  --- set to false to show for all line
+        },
         severity_sort = true,
         float = { border = "rounded" },
       })
+
+      -- Toggle: stop all active clients, or restart them for the current buffer
+      vim.keymap.set("n", "<leader>lt", function()
+        local clients = vim.lsp.get_clients({ bufnr = 0 })
+        if #clients > 0 then
+          vim.lsp.stop_client(clients, true)
+          vim.notify("LSP disabled", vim.log.levels.INFO)
+        else
+          -- Re-detect and start servers for the current buffer
+          vim.cmd("edit")
+          vim.notify("LSP enabled", vim.log.levels.INFO)
+        end
+      end, { silent = true, desc = "Toggle LSP" })
+
 
       -- Keymaps: attach once, apply to any LSP buffer
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -55,13 +72,9 @@ return {
       })
 
       -- Server-specific configuration (Neovim 0.11+ style)
-      vim.lsp.config("lua_ls", {
-        -- put lua_ls settings here if/when you need them
-      })
-
+      vim.lsp.config("lua_ls", {})
       vim.lsp.config("pyright", {})
       vim.lsp.config("clangd", {})
-      -- no vim.lsp.enable() calls needed: mason-lspconfig handles it
     end,
   },
 }
