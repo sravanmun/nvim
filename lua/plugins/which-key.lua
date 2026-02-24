@@ -1,30 +1,14 @@
--- if true then return {} end
-
+-- ~/.config/nvim/lua/plugins/which-key.lua
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
 	opts_extend = { "spec" },
 	opts = {
 		preset = "helix",
-		defaults = {},
 		spec = {
 			{
 				mode = { "n", "v" },
 
-				{ "<leader>b", group = "buffer" },
-				{ "<leader>c", group = "config" },
-				{ "<leader>f", group = "file/find" },
-				{ "<leader>g", group = "git" },
-
-                { "<leader><S-l>", "<cmd>Lazy<cr>", desc = "Lazy" },
-				{ "<leader>m", group = "mode" },
-				{ "<leader>q", group = "quit/session" },
-				{ "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
-				{ "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
-				{ "<leader>w", group = "window" },
-				{ "[", group = "prev" },
-				{ "]", group = "next" },
-				{ "z", group = "fold" },
 				{
 					"<leader>b",
 					group = "buffer",
@@ -32,14 +16,29 @@ return {
 						return require("which-key.extras").expand.buf()
 					end,
 				},
+				{ "<leader>c", group = "config" },
+				{ "<leader>e", group = "explorer" },
+				{ "<leader>f", group = "file/find" },
+				{ "<leader>g", group = "git" },
+				{ "<leader>l", group = "lsp" },
+				{ "<leader><S-l>", "<cmd>Lazy<cr>", desc = "Lazy" },
+				{ "<leader>m", group = "mode" },
+				{ "<leader>n", group = "docs" },
+				{ "<leader>q", group = "quit/session" },
+				{ "<leader>t", group = "tab" },
+				{ "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
 				{
 					"<leader>w",
-					group = "windows",
+					group = "window",
 					proxy = "<c-w>",
 					expand = function()
 						return require("which-key.extras").expand.win()
 					end,
 				},
+				{ "<leader>x", group = "diagnostics/quickfix", icon = { icon = "󱖫 ", color = "green" } },
+				{ "[", group = "prev" },
+				{ "]", group = "next" },
+				{ "z", group = "fold" },
 				-- better descriptions
 				{ "gx", desc = "Open with system app" },
 			},
@@ -61,12 +60,4 @@ return {
 			desc = "Window Hydra Mode (which-key)",
 		},
 	},
-	config = function(_, opts)
-		local wk = require("which-key")
-		wk.setup(opts)
-		if not vim.tbl_isempty(opts.defaults) then
-			LazyVim.warn("which-key: opts.defaults is deprecated. Please use opts.spec instead.")
-			wk.register(opts.defaults)
-		end
-	end,
 }

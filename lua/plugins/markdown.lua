@@ -1,40 +1,37 @@
+-- ~/.config/nvim/lua/plugins/markdown.lua
 return {
-	-- markdown table
-	{
-		"Kicamon/markdown-table-mode.nvim",
-		config = function()
-			require("markdown-table-mode").setup()
-		end,
-	},
-
-	-- asciidoc ASCIIDOC
-	{
-		"habamax/vim-asciidoctor",
-		ft = { "asciidoc", "adoc" },
-	},
-
-	-- org
+    -- markdown table
     {
-      "nvim-orgmode/orgmode",
-      ft = { "org" },
-      config = function()
-        require("orgmode").setup({
-          mappings = { disable_all = true },
-        })
-      end,
+        "Kicamon/markdown-table-mode.nvim",
+        opts = {},
+    },
+
+    -- asciidoc
+    {
+        "habamax/vim-asciidoctor",
+        ft = { "asciidoc", "adoc" },
+    },
+
+    -- org
+    {
+        "nvim-orgmode/orgmode",
+        ft = { "org" },
+        config = function()
+            require("orgmode").setup({
+                mappings = { disable_all = true },
+            })
+        end,
     },
 
     {
         "MeanderingProgrammer/render-markdown.nvim",
-        dependencies = { 
+        dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons" 
+            "nvim-tree/nvim-web-devicons",
         },
         ft = "markdown",
         opts = {
-            enabled = false,  -- Disabled by default
-            -- Your custom options here
-            file_types = { "markdown" },
+            enabled = false,
             code = {
                 sign = false,
                 width = "block",
@@ -54,6 +51,5 @@ return {
                 desc = "Toggle Render Markdown",
             },
         },
-    }
-
+    },
 }

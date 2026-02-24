@@ -1,4 +1,4 @@
--- fzf_lua for fuzzy finding backend
+-- ~/.config/nvim/lua/plugins/fzf.lua
 return {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" }, -- optional icons
@@ -11,6 +11,10 @@ return {
         { "<leader><space>", "<cmd>FzfLua files<cr>", desc = "Find Files" },
         { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find Files" },
         { "<leader>fg", "<cmd>FzfLua live_grep<cr>", desc = "Grep" },
+        { "<leader>f/", "<cmd>FzfLua grep_curbuf<cr>", desc = "Grep Current Buffer" },
+        { "<leader>fR", "<cmd>FzfLua resume<cr>", desc = "Resume Last Search" },
+        { "<leader>fh", "<cmd>FzfLua help_tags<cr>", desc = "Help Tags" },
+        { "<leader>fk", "<cmd>FzfLua keymaps<cr>", desc = "Keymaps" },
         { "<leader>bb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
         { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent Files" },
         { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },

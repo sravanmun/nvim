@@ -1,19 +1,21 @@
+-- ~/.config/nvim/lua/plugins/neogen.lua
 return {
-  "danymat/neogen",
-  dependencies = "nvim-treesitter/nvim-treesitter",
-  config = function()
-    require('neogen').setup({
-      enabled = true,
-      languages = {
-        python = {
-          template = {
-            annotation_convention = "numpydoc"
-          }
-        }
-      }
-    })
-
-    -- Keybinding to generate documentation
-    vim.keymap.set("n", "<leader>nf", ":lua require('neogen').generate()<CR>", { desc = "Generate documentation" })
-  end,
+    "danymat/neogen",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    opts = {
+        languages = {
+            python = {
+                template = {
+                    annotation_convention = "numpydoc",
+                },
+            },
+        },
+    },
+    keys = {
+        {
+            "<leader>nf",
+            function() require("neogen").generate() end,
+            desc = "Generate documentation",
+        },
+    },
 }

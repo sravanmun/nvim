@@ -1,11 +1,58 @@
--- ~/.config/nvim/lua/keymaps.lua
-local ui = require("util.ui")
+-- ~/.config/nvim/lua/config/keymaps.lua
+
+local function toggle_option(opt, all)
+	local newval = not vim.wo[opt]
+	if all then
+		for _, win in ipairs(vim.api.nvim_list_wins()) do
+			vim.api.nvim_set_option_value(opt, newval, { win = win })
+		end
+	else
+		vim.opt_local[opt] = newval
+	end
+end
+
+local function toggle_signcolumn()
+	if vim.opt.signcolumn:get() == "yes" then
+		vim.opt.signcolumn = "no"
+		vim.notify("Sign column hidden", vim.log.levels.INFO)
+	else
+		vim.opt.signcolumn = "yes"
+		vim.notify("Sign column shown", vim.log.levels.INFO)
+	end
+end
+
+local function toggle_hex()
+	if vim.b.hex_mode then
+		vim.cmd("%!xxd -r")
+		vim.bo.filetype = vim.b.hex_prev_ft or ""
+		vim.b.hex_mode = nil
+		vim.b.hex_prev_ft = nil
+	else
+		vim.b.hex_prev_ft = vim.bo.filetype
+		vim.cmd("%!xxd")
+		vim.bo.filetype = "xxd"
+		vim.b.hex_mode = true
+	end
+end
+
+local function toggle_background()
+	if vim.o.background == "dark" then
+		vim.o.background = "light"
+	else
+		vim.o.background = "dark"
+	end
+	local cs = vim.g.colors_name
+	if cs and cs ~= "" then
+		vim.cmd.colorscheme(cs)
+	end
+end
 
 vim.keymap.set("n", "<leader>;", "<cmd>FzfLua commands<CR>", { desc = "Command palette" })
 
 -- buffers
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", {desc = "next buffer"})
-vim.keymap.set("n", "<leader>bp", "<cmd>bnext<cr>", {desc = "prev buffer"})
+vim.keymap.set("n", "<leader>bp", "<cmd>bprev<cr>", {desc = "prev buffer"})
+vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>", {desc = "delete buffer"})
 -- vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 
 
@@ -23,7 +70,7 @@ vim.keymap.set("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>mtm", "<cmd>Mtm<cr>", { desc = "markdown table" })
 
 -- quit
-vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>", { desc = "quite" })
+vim.keymap.set("n", "<leader>qq", "<cmd>q<cr>", { desc = "quit" })
 
 -- Move to window using hjkl>
 vim.keymap.set("n", "<leader>wh", "<C-w>h", { desc = "Switch to left window" })
@@ -71,17 +118,20 @@ vim.keymap.set("n", "<leader>t5", "5gt", { desc = "tab 5" })
 
 -- ui
 vim.keymap.set("n", "<leader>un", function()
-	ui.toggle_option("number", true)
+	toggle_option("number", true)
 end, { desc = "Toggle line numbers" })
 vim.keymap.set("n", "<leader>uN", function()
-	ui.toggle_option("relativenumber", true)
+	toggle_option("relativenumber", true)
 end, { desc = "Toggle relative line numbers" })
-vim.keymap.set("n", "<leader>us", ui.toggle_signcolumn, { desc = "Toggle Sign Column" })
+vim.keymap.set("n", "<leader>us", toggle_signcolumn, { desc = "Toggle Sign Column" })
+vim.keymap.set("n", "<leader>ui", function()
+	toggle_option("list")
+end, { desc = "Toggle Indent Guides" })
+
+vim.keymap.set("n", "<leader>uh", toggle_hex, { desc = "Toggle hex view" })
 
 -- change background
-vim.keymap.set("n", "<leader>ub", function()
-	ui.toggle_background()
-end, { desc = "Toggle background (dark/light)" })
+vim.keymap.set("n", "<leader>ub", toggle_background, { desc = "Toggle background (dark/light)" })
 
 
 -- stop issues with recording

@@ -1,8 +1,9 @@
--- ~/.config/nvim/lua/options.lua
+-- ~/.config/nvim/lua/config/options.lua
 -- indentation
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 0
 vim.opt.expandtab = true
+vim.opt.listchars:append({ leadmultispace = "│   " })
 
 -- columns
 -- Add to your init.lua or options.lua

@@ -1,17 +1,28 @@
+-- ~/.config/nvim/lua/plugins/todo-comments.lua
 return {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
+        signs = false,
+        highlight = {
+            before = "",
+            keyword = "fg",
+            after = "",
+            pattern = [[.*<(KEYWORDS)\s*]],
+        },
+        gui_style = {
+            fg = "NOCOMBINE,bold",
+        },
         keywords = {
             -- built-ins you can keep/override
-            FIX = { icon = " ", color = "error", alt = { "FIXME", "FIXIT", "ISSUE" } },
-            HACK = { icon = " ", color = "warning" },
-            TODO = { icon = " ", color = "info" },
-            WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
-            PERF = { icon = " ", color = "perf", alt = { "OPTIM", "OPTIMIZE" } },
-            NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-            TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
-            -- your additions / tweaks
+            FIX = { icon = " ", color = "error", alt = { "FIXME", "FIXIT", "ISSUE" } },  -- FIX
+            HACK = { icon = " ", color = "warning" },                                    -- HACK
+            TODO = { icon = " ", color = "info" },                                       -- TODO
+            WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },        -- WARN
+            PERF = { icon = " ", color = "perf", alt = { "OPTIM", "OPTIMIZE" } },        -- PERF
+            NOTE = { icon = " ", color = "hint", alt = { "INFO" } },                     -- NOTE
+            TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } }, -- TEST
+            -- your additions / tweaks       
             BUG = { icon = " ", color = "error", alt = { "DEFECT" } }, -- also counted as an issue
             DEBUG = { icon = " ", color = "hint", alt = { "DEBUG" } },
             DONE = { icon = " ", color = "done", alt = { "CLOSED", "RESOLVED" } },

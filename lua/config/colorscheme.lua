@@ -1,4 +1,4 @@
--- ~/.config/nvim/lua/colorscheme.lua
+-- ~/.config/nvim/lua/config/colorscheme.lua
 vim.opt.termguicolors = true
 
 -- Paths to store settings
@@ -71,13 +71,8 @@ local colorscheme = load_saved_colorscheme() or default_colorscheme
 local background
 
 -- Check if macOS and use system theme, otherwise use saved/default
-local macos_theme = get_macos_theme()
-if macos_theme then
-	background = macos_theme
-	-- background = load_saved_background() or default_background
-else
-	background = load_saved_background() or default_background
-end
+-- background = get_macos_theme()
+background = load_saved_background() or default_background
 
 -- Set background
 vim.o.background = background
@@ -100,25 +95,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	end,
 })
 
--- Only save background changes on non-macOS systems
+-- Save background changes
 vim.api.nvim_create_autocmd("OptionSet", {
 	pattern = "background",
 	callback = function()
-		-- Only save if not on macOS (since macOS follows system)
-		if vim.fn.has("mac") ~= 1 then
-			save_background(vim.o.background)
-		end
+		save_background(vim.o.background)
 	end,
 })
 
---[[
--- Optional: Periodically check macOS system theme (every 5 minutes)
-if vim.fn.has("mac") == 1 then
-	vim.fn.timer_start(300000, function()
-		local current_macos_theme = get_macos_theme()
-		if current_macos_theme and current_macos_theme ~= vim.o.background then
-			vim.o.background = current_macos_theme
-		end
-	end, { ["repeat"] = -1 })
-end
-]]
+

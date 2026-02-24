@@ -1,4 +1,4 @@
--- lua/plugins/illuminate.lua
+-- ~/.config/nvim/lua/plugins/illuminate.lua
 return {
     "RRethy/vim-illuminate",
     event = { "BufReadPost", "BufNewFile" },
