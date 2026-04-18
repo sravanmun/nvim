@@ -133,6 +133,11 @@ vim.keymap.set("n", "<leader>uh", toggle_hex, { desc = "Toggle hex view" })
 -- change background
 vim.keymap.set("n", "<leader>ub", toggle_background, { desc = "Toggle background (dark/light)" })
 
+vim.keymap.set("n", "<leader>ua", function()
+	vim.g.blink_cmp_enabled = vim.g.blink_cmp_enabled == false
+	vim.notify("Autocomplete " .. (vim.g.blink_cmp_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
+end, { desc = "Toggle autocomplete" })
+
 
 -- stop issues with recording
 vim.keymap.set("n", "q", "<nop>")

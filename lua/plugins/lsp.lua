@@ -17,13 +17,6 @@ return {
                 },
             },
             {
-                "mason-org/mason-lspconfig.nvim",
-                opts = {
-                    ensure_installed = { "pyright", "clangd", "lua_ls", "vhdl_ls" },
-                    automatic_enable = true,
-                },
-            },
-            {
                 "folke/lazydev.nvim",
                 ft = "lua",
                 opts = {
@@ -35,6 +28,11 @@ return {
         },
 
         config = function()
+            -- toggle with <leader>lt
+            -- vim.g.lsp_enabled = false
+
+            vim.lsp.enable({ "pyright", "clangd", "lua_ls", "vhdl_ls" })
+
             -- Global diagnostics UI
             vim.diagnostic.config({
                 virtual_text = false,
@@ -49,9 +47,11 @@ return {
             vim.keymap.set("n", "<leader>lt", function()
                 local clients = vim.lsp.get_clients({ bufnr = 0 })
                 if #clients > 0 then
+                    vim.g.lsp_enabled = false
                     vim.lsp.stop_client(clients, true)
                     vim.notify("LSP disabled", vim.log.levels.INFO)
                 else
+                    vim.g.lsp_enabled = true
                     vim.cmd("edit")
                     vim.notify("LSP enabled", vim.log.levels.INFO)
                 end
@@ -60,6 +60,10 @@ return {
             -- Keymaps: attach once, apply to any LSP buffer
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
+                    if vim.g.lsp_enabled == false then
+                        vim.lsp.stop_client(args.data.client_id, true)
+                        return
+                    end
                     local bufnr = args.buf
                     local map = function(mode, lhs, rhs, desc)
                         vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })

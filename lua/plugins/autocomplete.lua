@@ -15,6 +15,9 @@ return {
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         keymap = { preset = "default" },
+        enabled = function()
+            return vim.g.blink_cmp_enabled ~= false
+        end,
 
         appearance = {
             use_nvim_cmp_as_default = true,
