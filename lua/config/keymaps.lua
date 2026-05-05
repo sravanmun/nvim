@@ -52,7 +52,11 @@ vim.keymap.set("n", "<leader>;", "<cmd>FzfLua commands<CR>", { desc = "Command p
 -- buffers
 vim.keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", {desc = "next buffer"})
 vim.keymap.set("n", "<leader>bp", "<cmd>bprev<cr>", {desc = "prev buffer"})
-vim.keymap.set("n", "<leader>bd", "<cmd>bd<cr>", {desc = "delete buffer"})
+vim.keymap.set("n", "<leader>bd", function()
+  local buf = vim.api.nvim_get_current_buf()
+  vim.cmd("bprevious")
+  vim.cmd("bdelete " .. buf)
+end, { desc = "delete buffer" })
 -- vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show diagnostic" })
 
 
@@ -132,12 +136,6 @@ vim.keymap.set("n", "<leader>uh", toggle_hex, { desc = "Toggle hex view" })
 
 -- change background
 vim.keymap.set("n", "<leader>ub", toggle_background, { desc = "Toggle background (dark/light)" })
-
-vim.keymap.set("n", "<leader>ua", function()
-	vim.g.blink_cmp_enabled = vim.g.blink_cmp_enabled == false
-	vim.notify("Autocomplete " .. (vim.g.blink_cmp_enabled and "enabled" or "disabled"), vim.log.levels.INFO)
-end, { desc = "Toggle autocomplete" })
-
 
 -- stop issues with recording
 vim.keymap.set("n", "q", "<nop>")

@@ -32,6 +32,9 @@ vim.o.updatetime = 500 -- 0.5s idle
 -- Always show sign column (helps confirm diagnostics exist)
 vim.o.signcolumn = "no"
 
+-- Native LSP completion menu
+vim.o.completeopt = "menuone,noselect,popup,fuzzy"
+
 -- file highlighting
 vim.filetype.add({
 	extension = {
