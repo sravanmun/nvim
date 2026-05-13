@@ -1,14 +1,19 @@
--- ~/.config/nvim/lua/plugins/colorschemes.lua
-return {
-    { "catppuccin/nvim",          name = "catppuccin", lazy = true },
-    { "Th3Whit3Wolf/space-nvim",  name = "space",      lazy = true },
-    { "ellisonleao/gruvbox.nvim",   lazy = true },
-    { "sainnhe/everforest",         lazy = true },
-    { "maxmx03/solarized.nvim",     lazy = true },
-    { "phha/zenburn.nvim",          lazy = true },
-    { "NTBBloodbath/doom-one.nvim", lazy = true },
-    { "rebelot/kanagawa.nvim",      lazy = true },
-    { "shaunsingh/nord.nvim",       lazy = true },
-    { "deparr/tairiki.nvim",        lazy = true },
-    { "Mofiqul/adwaita.nvim",       lazy = true },
-}
+-- Colorschemes are eager but inert: they only register :colorscheme commands.
+-- Listed individually so vim.pack tracks each one.
+return function(add)
+  for _, src in ipairs({
+    "catppuccin/nvim",
+    "Th3Whit3Wolf/space-nvim",
+    "ellisonleao/gruvbox.nvim",
+    "sainnhe/everforest",
+    "maxmx03/solarized.nvim",
+    "phha/zenburn.nvim",
+    "NTBBloodbath/doom-one.nvim",
+    "rebelot/kanagawa.nvim",
+    "shaunsingh/nord.nvim",
+    "deparr/tairiki.nvim",
+    "Mofiqul/adwaita.nvim",
+  }) do
+    add({ src })
+  end
+end

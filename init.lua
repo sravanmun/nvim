@@ -1,4 +1,7 @@
--- ~/.config/nvim/init.lua
+-- init.lua using vim.pack.
+
+-- Built-in Lua bytecode cache (~/.cache/nvim/luac).
+vim.loader.enable()
 
 -- leader keys
 vim.g.mapleader = " "
@@ -8,14 +11,13 @@ vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- disable unused providers (saves ~430ms on python files)
+-- disable unused providers
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
-
--- Change terminal background to match Neovim colorscheme
+-- terminal background sync
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
@@ -26,8 +28,6 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end
   end,
 })
-
--- Restore terminal background on exit
 vim.api.nvim_create_autocmd("VimLeavePre", {
   callback = function()
     io.write("\027]111\007")
@@ -35,31 +35,27 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
   end,
 })
 
--- bootstrap lazy.vim extention manager
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-local uv = vim.uv or vim.loop
-if not uv.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
+local pack = require("util.pack_load")
+
+-- Explicit list (not a glob) so load order is deterministic. UI first because
+-- it provides shared deps (plenary, devicons) used by later modules.
+for _, name in ipairs({
+  "ui",
+  "treesitter",
+  "lsp",
+  "git",
+  "finder",
+  "editing",
+  "markdown",
+  "colorschemes",
+}) do
+  require("plugins." .. name)(pack.add)
 end
-vim.opt.rtp:prepend(lazypath)
 
--- Load plugins from lua/plugins/*
-require("lazy").setup({
-	spec = { { import = "plugins" } },
-	change_detection = { enabled = false },
-})
+pack.commit()
 
--- configuration
+-- configuration modules
 require("config.options")
 require("config.keymaps")
 require("config.colorscheme")
 require("config.lsp")
-
-
