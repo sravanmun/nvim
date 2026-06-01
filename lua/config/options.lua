@@ -12,6 +12,13 @@ vim.opt.number = true
 -- vim.opt.foldcolumn = "1"    -- Optional: show fold column
 -- vim.opt.statuscolumn = [[%s%=%{v:relnum?v:relnum:v:lnum} ]]
 
+
+-- wrapping
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+
+
 vim.opt.clipboard = "unnamedplus" -- use the + register (system)
 
 -- change split direction

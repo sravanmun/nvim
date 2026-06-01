@@ -2,7 +2,7 @@
 -- Native LSP + completion (no nvim-lspconfig, no mason)
 -- Server configs live in ~/.config/nvim/lsp/<name>.lua
 
-vim.lsp.enable({ "pyright", "clangd", "lua_ls", "vhdl_ls" })
+vim.lsp.enable({ "pyright", "clangd", "lua_ls", "vhdl_ls", "texlab" })
 
 vim.diagnostic.config({
     virtual_text = false,
